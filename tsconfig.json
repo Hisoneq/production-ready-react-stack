@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+
+      // Куда сохраняем файлы, можно убрать тк мобираем через вебпак
+      "outDir": "./dist/",
+
+      // Подсвечивает места где не указан тип
+      "noImplicitAny": true,
+      "module": "es6",
+
+      // Компилируем в es5 чтобы поддержилалось на старых браузерах
+      "target": "es5",
+      "jsx": "react",
+
+      // Обрабатывать не только ts файлы, но и js файлы
+      "allowJs": true,
+      "moduleResolution": "node",
+
+      // Чтобы юзать import а не require
+      "esModuleInterop": true,
+
+      // Где не  поддерживается export default, чтобы не пистаь * as
+      "allowSyntheticDefaultImports": true,
+    },
+    "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+  }
