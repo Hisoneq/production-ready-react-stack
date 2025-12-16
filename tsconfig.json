@@ -16,6 +16,11 @@
       "allowJs": true,
       "moduleResolution": "node",
 
+      "baseUrl": ".",
+      "paths": {
+        "*": ["./src/*"]
+      },
+
       // Чтобы юзать import а не require
       "esModuleInterop": true,
 
