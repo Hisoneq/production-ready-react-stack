@@ -6,11 +6,11 @@
 
       // Подсвечивает места где не указан тип
       "noImplicitAny": true,
-      "module": "es6",
+      "module": "esnext",
 
       // Компилируем в es5 чтобы поддержилалось на старых браузерах
       "target": "es5",
-      "jsx": "react",
+      "jsx": "react-jsx",
 
       // Обрабатывать не только ts файлы, но и js файлы
       "allowJs": true,
