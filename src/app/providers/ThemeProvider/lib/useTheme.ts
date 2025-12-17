@@ -11,10 +11,13 @@ interface UseThemeResult {
 export default function useTheme(): UseThemeResult {
     const { theme, setTheme } = useContext(ThemeContext);
 
-    const toggleTheme = () => {
-        setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK);
-        localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme);
-    }
+    const currentTheme = theme || Theme.DARK;
 
-    return { theme, toggleTheme };
+    const toggleTheme = () => {
+        const newTheme = currentTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
+        setTheme(newTheme);
+        localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
+    };
+
+    return { theme: currentTheme, toggleTheme };
 }
