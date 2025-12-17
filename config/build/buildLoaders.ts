@@ -1,7 +1,21 @@
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BuildOptions } from './types/config';
+
 export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
+
+    const svgLoader = {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+    }
+
+    const fileLoader = {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'images',
+        },
+    }
 
     // Очередь подгрузки лоадеров важна
     const tsLoader = {
@@ -73,10 +87,12 @@ export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule
     }
 
     return [
+        svgLoader,
+        fileLoader,
         tsLoader,
         cssModulesLoader,  // сначала модульные CSS (более специфичные)
         cssLoader,
         sassModulesLoader, 
-        sassLoader,
+        sassLoader
     ]
 }
