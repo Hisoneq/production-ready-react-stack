@@ -9,14 +9,14 @@ interface LanguageSwitcherProps {
 
 export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
 
-    const {t, i18n} = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const toggle = () => {
         i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
-    }
+    };
 
     return (
-        <Button 
+        <Button
             onClick={toggle}
             theme={ThemeButton.CLEAR}
             className={classNames(cls.languageswitcher, {}, [className])}

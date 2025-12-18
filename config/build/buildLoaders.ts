@@ -1,5 +1,5 @@
-import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import webpack from 'webpack';
 import { BuildOptions } from './types/config';
 
 export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
@@ -7,22 +7,22 @@ export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule
     const svgLoader = {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
-    }
+    };
 
     const fileLoader = {
         test: /\.(png|jpe?g|gif)$/i,
         loader: 'file-loader',
         options: {
-          outputPath: 'images',
+            outputPath: 'images',
         },
-    }
+    };
 
     // Очередь подгрузки лоадеров важна
     const tsLoader = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
-    }
+    };
 
     // Модульные CSS файлы (.module.css)
     const cssModulesLoader = {
@@ -42,7 +42,7 @@ export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule
             }
         ],
         exclude: /node_modules/,
-    }
+    };
 
     // Обычные CSS файлы (.css) - исключаем .module.css
     const cssLoader = {
@@ -52,7 +52,7 @@ export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule
             options.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
             'css-loader'
         ],
-    }
+    };
 
     // Модульные SCSS файлы (.module.scss, .module.sass)
     const sassModulesLoader = {
@@ -73,7 +73,7 @@ export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule
             'sass-loader'
         ],
         exclude: /node_modules/,
-    }
+    };
 
     // Обычные SCSS файлы (.scss, .sass) - исключаем .module.scss
     const sassLoader = {
@@ -84,15 +84,32 @@ export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule
             'css-loader',
             'sass-loader'
         ],
-    }
+    };
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const babelLoader = {
+        test: /\.(js|jsx|ts)$/,
+        exclude: /node_modules/,
+        use: {
+            loader: 'babel-loader',
+            options: {
+                presets: [
+                    '@babel/preset-env',
+                    '@babel/preset-react',
+                    '@babel/preset-typescript'
+                ]
+            }
+        }
+    };
 
     return [
         svgLoader,
         fileLoader,
         tsLoader,
+        //babelLoader,
         cssModulesLoader,  // сначала модульные CSS (более специфичные)
         cssLoader,
-        sassModulesLoader, 
+        sassModulesLoader,
         sassLoader
-    ]
+    ];
 }

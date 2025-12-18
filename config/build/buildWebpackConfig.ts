@@ -1,4 +1,4 @@
-import { BuildOptions } from "./types/config";
+import { BuildOptions } from './types/config';
 import webpack from 'webpack';
 import buildPlugins from './buildPlugins';
 import buildLoaders from './buildLoaders';
@@ -13,7 +13,7 @@ export default function buildWebpackConfig(options: BuildOptions): webpack.Confi
         mode: mode,
         entry: paths.entry,
         output: {
-            filename: "[name].[contenthash].js",
+            filename: '[name].[contenthash].js',
             path: paths.build,
             clean: true,
         },
@@ -24,5 +24,5 @@ export default function buildWebpackConfig(options: BuildOptions): webpack.Confi
         resolve: buildResolvers(options),
         devtool: isDev ? 'inline-source-map' : undefined,
         devServer: isDev ? buildDevServer(options) : undefined,
-    }
+    };
 }
