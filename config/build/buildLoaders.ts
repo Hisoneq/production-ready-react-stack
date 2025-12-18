@@ -86,10 +86,26 @@ export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule
         ],
     }
 
+    const babelLoader = {
+        test: /\.(js|jsx|ts)$/,
+        exclude: /node_modules/,
+        use: {
+            loader: 'babel-loader',
+            options: {
+                presets: [
+                    '@babel/preset-env',
+                    '@babel/preset-react',
+                    '@babel/preset-typescript'
+                ]
+            }
+        }
+    }
+
     return [
         svgLoader,
         fileLoader,
         tsLoader,
+        //babelLoader,
         cssModulesLoader,  // сначала модульные CSS (более специфичные)
         cssLoader,
         sassModulesLoader, 
