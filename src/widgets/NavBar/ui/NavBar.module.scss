@@ -10,9 +10,8 @@
 .links {
     margin-left: auto;
     
-    // Ссылки в хедере используют инвертированные цвета для читаемости на темном фоне
     a {
-        color: var(--inverted-primary-color) !important;
+        color: var(--inverted-primary-color);
     }
 }
 
