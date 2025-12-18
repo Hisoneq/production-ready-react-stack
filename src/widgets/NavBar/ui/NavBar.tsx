@@ -14,5 +14,5 @@ export function NavBar({ className }: NavbarProps){
                 <AppLink theme={AppLinkTheme.PRIMARY} to="/about">About</AppLink>
             </div>
         </div>
-    )
+    );
 }

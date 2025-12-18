@@ -16,11 +16,11 @@ export function SideBar({ className }: SideBarProps) {
     const [isOpen, setIsOpen] = useState(true);
 
     const handleToggle = () => {
-        setIsOpen(prev => !prev)
-    }
+        setIsOpen((prev) => !prev);
+    };
 
     return (
-        <div className={classNames(cls.sidebar, {[cls.isOpen]: isOpen}, [className])}>
+        <div className={classNames(cls.sidebar, { [cls.isOpen]: isOpen }, [className])}>
             <button onClick={handleToggle}>{t('Скрыть')}</button>
 
             <div className={cls.switchers}>
