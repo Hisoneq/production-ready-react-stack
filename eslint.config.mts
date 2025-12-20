@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import i18next from 'eslint-plugin-i18next';
 import pluginReact from 'eslint-plugin-react';
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
@@ -24,6 +25,9 @@ export default defineConfig([
     
     {
         files: ['**/*.{js,jsx,ts,tsx}'],
+        plugins: {
+            'i18next': i18next
+        },
         languageOptions: {
             globals: {
                 ...globals.browser,
@@ -41,10 +45,12 @@ export default defineConfig([
         },
         settings: {
             react: {
-                version: 'detect' // Автоматически берет из package.json
+                version: 'detect'
             }
         },
         rules: {
+            'i18next/no-literal-string': 'error',
+            
             'indent': ['error', 4, { 'SwitchCase': 1 }],
             'linebreak-style': ['error', 'unix'],
             'quotes': ['error', 'single', { 'avoidEscape': true }],
