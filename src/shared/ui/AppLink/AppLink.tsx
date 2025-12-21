@@ -5,10 +5,10 @@ import { ReactNode } from 'react';
 
 export enum AppLinkTheme {
     PRIMARY = 'primary',
-    SECONDARY = 'secondary'
+    SECONDARY = 'secondary',
 }
 
-interface AppLinkProps extends LinkProps{
+interface AppLinkProps extends LinkProps {
     className?: string;
     children?: ReactNode;
     theme?: AppLinkTheme;
@@ -21,7 +21,6 @@ export function AppLink({
     theme = AppLinkTheme.PRIMARY,
     ...otherProps
 }: AppLinkProps) {
-
     return (
         <Link
             to={to}

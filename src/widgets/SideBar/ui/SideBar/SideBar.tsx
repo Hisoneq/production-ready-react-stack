@@ -10,7 +10,6 @@ interface SideBarProps {
 }
 
 export function SideBar({ className }: SideBarProps) {
-
     const { t } = useTranslation();
 
     const [isOpen, setIsOpen] = useState(true);
@@ -25,7 +24,7 @@ export function SideBar({ className }: SideBarProps) {
 
             <div className={cls.switchers}>
                 <ThemeSwitcher />
-                <LanguageSwitcher className={cls.lang}/>
+                <LanguageSwitcher className={cls.lang} />
             </div>
         </div>
     );
