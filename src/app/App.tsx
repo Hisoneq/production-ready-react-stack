@@ -11,9 +11,9 @@ export default function App() {
 
     return (
         <div className={classNames('app', {}, [theme])}>
-            <Suspense fallback=''>
+            <Suspense fallback="loading...">
                 <NavBar />
-                <div className='content-page'>
+                <div className="content-page">
                     <SideBar />
                     <AppRouter />
                 </div>

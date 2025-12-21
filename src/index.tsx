@@ -12,5 +12,4 @@ render(
         </ThemeProvider>
     </BrowserRouter>,
     document.getElementById('root') as HTMLElement
-
 );
