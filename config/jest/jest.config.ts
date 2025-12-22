@@ -12,9 +12,7 @@ const config: Config = {
 
   coverageProvider: "v8",
 
-  moduleDirectories: [
-    "node_modules"
-  ],
+  moduleDirectories: ["node_modules", "src"],
 
   moduleFileExtensions: [
     "js",
@@ -33,9 +31,17 @@ const config: Config = {
 
   testEnvironment: "jsdom",
 
-  testMatch: [
-     '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'
-  ],
+  setupFilesAfterEnv: ['<rootDir>/config/jest/setupTests.ts'],
+  
+  testMatch: ['<rootDir>/src/**/*(*.)@(spec|test).[tj]s?(x)'],
+
+  moduleNameMapper: {
+    '^shared/(.*)$': '<rootDir>/src/shared/$1',
+    '^widgets/(.*)$': '<rootDir>/src/widgets/$1',
+    '^pages/(.*)$': '<rootDir>/src/pages/$1',
+    '^app/(.*)$': '<rootDir>/src/app/$1',
+    '\\.(css|scss)$': 'identity-obj-proxy',
+  },
 };
 
 export default config;
