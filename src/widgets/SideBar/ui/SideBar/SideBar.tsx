@@ -23,7 +23,9 @@ export function SideBar({ className }: SideBarProps) {
             data-testid="sidebar"
             className={classNames(cls.sidebar, { [cls.isOpen]: isOpen }, [className])}
         >
-            <button onClick={handleToggle}>{t('Скрыть')}</button>
+            <button onClick={handleToggle} data-testid="toggleButton">
+                {t('Скрыть')}
+            </button>
 
             <div className={cls.switchers}>
                 <ThemeSwitcher />
