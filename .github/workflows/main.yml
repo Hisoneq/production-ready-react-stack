@@ -26,5 +26,7 @@ jobs:
               run: npm run lint
             - name: unit tests
               run: npm run test:unit
-            # - name: test ui (loki)
-            #   run: npm run test:ui
+            - name: build storybook
+              run: npm run storybook:build
+            - name: ui testing (screenshots)
+              run: npm run test:ui:ci
