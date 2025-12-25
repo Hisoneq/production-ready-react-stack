@@ -1,5 +1,6 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack from 'webpack';
+import { buildSassLoader } from './loaders/buildSassLoader';
 import { buildSassModulesLoader } from './loaders/buildSassModulesLoader';
 import { BuildOptions } from './types/config';
 
@@ -54,16 +55,8 @@ export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule
 
     const sassModulesLoader = buildSassModulesLoader(options.isDev);
 
-    const sassLoader = {
-        test: /\.s[ac]ss$/i,
-        exclude: [/node_modules/, /\.module\./],
-        use: [
-            options.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-            'css-loader',
-            'sass-loader'
-        ],
-    };
-
+    const sassLoader = buildSassLoader(options.isDev);
+    
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const babelLoader = {
         test: /\.(js|jsx|ts)$/,

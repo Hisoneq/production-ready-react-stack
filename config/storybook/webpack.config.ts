@@ -1,7 +1,8 @@
-import path from 'path'
-import webpack from 'webpack'
-import { buildSassModulesLoader } from '../build/loaders/buildSassModulesLoader'
-import { BuildPaths } from '../build/types/config'
+import path from 'path';
+import webpack from 'webpack';
+import { buildSassLoader } from '../build/loaders/buildSassLoader';
+import { buildSassModulesLoader } from '../build/loaders/buildSassModulesLoader';
+import { BuildPaths } from '../build/types/config';
 
 export default ({ config }: { config: webpack.Configuration}) => {
 
@@ -15,6 +16,7 @@ export default ({ config }: { config: webpack.Configuration}) => {
     config.resolve.extensions.push('.ts', '.tsx');
 
     config.module.rules.push(buildSassModulesLoader(true)); 
+    config.module.rules.push(buildSassLoader(true));
 
     return config
 }

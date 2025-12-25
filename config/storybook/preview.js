@@ -1,3 +1,5 @@
+import 'app/styles/index.scss';
+
 export const parameters = {
     controls: {
         matchers: {
@@ -6,3 +8,11 @@ export const parameters = {
         },
     },
 };
+
+export const decorators = [
+    (Story) => (
+        <div className="app" style={{ padding: '20px' }}>
+            <Story />
+        </div>
+    ),
+];
