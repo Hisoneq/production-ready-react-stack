@@ -8,7 +8,7 @@ export default function buildPlugins({ paths, isDev }: BuildOptions): webpack.We
 
     const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
-    return [
+    const plugins = [
         new HTMLWebpackPlugin({
             template: paths.html
         }),
@@ -20,9 +20,15 @@ export default function buildPlugins({ paths, isDev }: BuildOptions): webpack.We
         new webpack.DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev),
         }),
-        new ReactRefreshWebpackPlugin(),
-        new BundleAnalyzerPlugin({
-            openAnalyzer: false,
-        }),
     ];
+
+    if (isDev) {
+        plugins.push(new BundleAnalyzerPlugin({
+            openAnalyzer: false,
+        }))
+
+        plugins.push(new ReactRefreshWebpackPlugin())
+    }
+
+    return plugins
 }
