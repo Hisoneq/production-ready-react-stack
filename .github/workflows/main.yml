@@ -30,9 +30,5 @@ jobs:
               run: npm run lint
             - name: unit tests
               run: npm run test:unit
-            - name: build storybook
-              run: npm run storybook:build
-            - name: Clear Loki cache
-              run: rm -rf .loki || true
             - name: ui testing (screenshots)
               run: npm run test:ui:ci
