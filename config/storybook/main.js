@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 
-export const stories = ['../src/**/*.stories.@(js|jsx|ts|tsx)'];
+export const stories = ['../../src/**/*.stories.@(js|jsx|ts|tsx)'];
 export const addons = [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
@@ -14,7 +14,7 @@ export const framework = {
 export async function webpackFinal(config) {
     config.resolve.alias = {
         ...config.resolve.alias,
-        shared: resolve(__dirname, '../src/shared'),
+        shared: resolve(__dirname, '../../src/shared'),
     };
 
     config.module.rules = config.module.rules.filter((rule) => {
@@ -44,7 +44,7 @@ export async function webpackFinal(config) {
             },
             'sass-loader',
         ],
-        include: resolve(__dirname, '../src'),
+        include: resolve(__dirname, '../../src'),
     });
 
     return config;
