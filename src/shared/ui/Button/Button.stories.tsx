@@ -33,22 +33,9 @@ export const Clear: Story = {
     },
 };
 
-export const Default: Story = {
+export const Otline: Story = {
     args: {
-        children: 'Default Button',
-    },
-};
-
-export const WithCustomClass: Story = {
-    args: {
-        children: 'Custom Button',
-        className: 'custom-class',
-    },
-};
-
-export const Disabled: Story = {
-    args: {
-        children: 'Disabled Button',
-        disabled: true,
+        theme: ThemeButton.OUTLINE,
+        children: 'Clear Button',
     },
 };
