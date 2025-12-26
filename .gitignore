@@ -74,6 +74,7 @@ storybook-static
 tmp/
 temp/
 
+# ui tool
 .loki/report.html
 .loki/report.json
 
