@@ -15,7 +15,7 @@
         "pre-commit": "npm run lint && npm run format:check",
         "test:unit": "jest --config ./config/jest/jest.config.ts",
         "test:ui": "npx loki test",
-        "test:ui:ci": "npm run storybook:build && npx http-server storybook-static -p 6006 -s & sleep 3 && npx loki --requireReference --reactUri http://host.docker.internal:6006",
+        "test:ui:ci": "npx loki --requireReference --reactUri file:./storybook-static",
         "fix-all": "npm run lint:fix && npm run format",
         "storybook": "storybook dev -p 6006 -c ./config/storybook",
         "storybook:build": "storybook build -c ./config/storybook"
@@ -102,14 +102,12 @@
     "loki": {
         "configurations": {
             "chrome.laptop": {
-                "target": "chrome.docker",
+                "target": "chrome.app",
                 "width": 1366,
-                "height": 768,
-                "deviceScaleFactor": 1,
-                "mobile": false
+                "height": 768
             },
             "chrome.iphone7": {
-                "target": "chrome.docker",
+                "target": "chrome.app",
                 "preset": "iPhone 7"
             }
         }
