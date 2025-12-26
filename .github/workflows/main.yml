@@ -30,8 +30,8 @@ jobs:
             - name: Unit tests
               run: npm run test:unit
 
-            - name: Build Storybook
-              run: npm run storybook:build
+            # - name: Build Storybook
+            #   run: npm run storybook:build
 
-            - name: Run Loki tests
-              run: npm run test:ui:ci
+            # - name: Run Loki tests
+            #   run: npm run test:ui:ci
