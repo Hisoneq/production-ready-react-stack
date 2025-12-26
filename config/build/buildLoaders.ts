@@ -17,6 +17,7 @@ export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule
         },
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const tsLoader = {
         test: /\.tsx?$/,
         use: 'ts-loader',
@@ -55,9 +56,9 @@ export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule
 
     const sassLoader = buildSassLoader(options.isDev);
     
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+     
     const babelLoader = {
-        test: /\.(js|jsx|ts)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
             loader: 'babel-loader',
@@ -74,8 +75,8 @@ export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule
     return [
         svgLoader,
         fileLoader,
-        tsLoader,
-        //babelLoader,
+        // tsLoader,
+        babelLoader,
         cssModulesLoader,
         cssLoader,
         sassModulesLoader,
