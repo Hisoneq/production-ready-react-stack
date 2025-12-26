@@ -33,11 +33,10 @@ jobs:
             - name: Build Storybook
               run: npm run storybook:build
 
-            - name: Setup virtual display for Loki
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install -y xvfb libgtk-3-0 libnotify-dev libnss3 libxss1 libasound2t64 libgbm1
-
             - name: Run Loki tests
               run: |
-                  xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" npm run test:ui:ci
+                  npx http-server ./storybook-static -p 8000 -s &
+                  SERVER_PID=$!
+                  sleep 3 # Даём серверу время на запуск
+                  npm run test:ui:ci
+                  kill $SERVER_PID
