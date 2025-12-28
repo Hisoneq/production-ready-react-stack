@@ -4,18 +4,9 @@
 @use 'themes/light';
 
 .app {
-    font: var(--font-m);
-
-    // Дефолтные значения (темная тема по умолчанию) - консольные цвета
-    --bg-color: #000033;
-    --inverted-bg-color: #1a1a3a;
-    --primary-color: #00ff00;
-    --secondary-color: #00ff88;
-    --inverted-primary-color: #00ff00;
-    --inverted-secondary-color: #00ff88;
-
     background: var(--bg-color);
     color: var(--primary-color);
+    font: var(--font-m);
     min-height: 100vh;
 }
 
