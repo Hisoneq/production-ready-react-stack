@@ -93,6 +93,13 @@ export default defineConfig([
     },
 
     {
+        files: ['**/*.stories.{ts,tsx}'],
+        rules: {
+            'i18next/no-literal-string': 'off', // ← Выключаем только это правило
+        },
+    },
+
+    {
         files: ['config/**/*.ts', 'config/**/*.js'],
         rules: {
             '@typescript-eslint/no-require-imports': 'off',

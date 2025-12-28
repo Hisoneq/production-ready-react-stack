@@ -4,7 +4,6 @@ import { NavBar } from 'widgets/NavBar';
 import { SideBar } from 'widgets/SideBar';
 import { AppRouter } from './providers/router';
 import { useTheme } from './providers/ThemeProvider';
-import './styles/index.scss';
 
 export default function App() {
     const { theme } = useTheme();
