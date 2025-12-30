@@ -45,10 +45,12 @@ const config: Config = {
     moduleNameMapper: {
       '\\.(scss|less|css)$': 'identity-obj-proxy',
       '\\.svg$': '<rootDir>/config/jest/jestEmptyComponent.tsx',
-      '@app/(.*)': '<rootDir>/src/app/$1',
-      '@shared/(.*)': '<rootDir>/src/shared/$1',
-      '@pages/(.*)': '<rootDir>/src/pages/$1',
-      '@widgets/(.*)': '<rootDir>/src/widgets/$1',
+      '^app/(.*)': '<rootDir>/src/app/$1',
+      '^shared/(.*)': '<rootDir>/src/shared/$1',
+      '^pages/(.*)': '<rootDir>/src/pages/$1',
+      '^widgets/(.*)': '<rootDir>/src/widgets/$1',
+      '^features/(.*)': '<rootDir>/src/features/$1',
+      '^entities/(.*)': '<rootDir>/src/entities/$1',
     },
 };
 

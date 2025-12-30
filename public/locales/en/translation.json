@@ -12,5 +12,9 @@
     "Короткий язык": "EN",
     "переключить": "toggle",
     "Пример текста модалки": "Example modal text",
-    "Войти": "Login"
+    "Войти": "Login",
+    "Введите ник": "Enter username",
+    "Введите пароль": "Enter password",
+    "Форма авторизации": "Authorization form",
+    "Вы ввели неправильынй логин или пароль": "Wrond username or password"
 }
