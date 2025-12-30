@@ -1,5 +1,6 @@
 import { Theme } from 'app/providers/ThemeProvider';
 import 'app/styles/index.scss';
+import { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 export const parameters = {
@@ -18,7 +19,10 @@ export const decorators = [
         return (
             <BrowserRouter>
                 <div className={`app ${theme}`} style={{ padding: '20px' }}>
-                    <Story />
+                    {/* Добавь Suspense для i18next */}
+                    <Suspense fallback={<div>Loading translations...</div>}>
+                        <Story />
+                    </Suspense>
                 </div>
             </BrowserRouter>
         );
