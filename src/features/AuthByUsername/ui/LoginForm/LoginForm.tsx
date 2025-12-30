@@ -43,7 +43,9 @@ export const LoginForm = React.memo(({ className }: LoginFormProps) => {
         <div className={classNames(cls.loginform, {}, [className])}>
             <Text title={t('Форма авторизации')} />
 
-            {error && <Text title={error} theme={TextTheme.ERROR} />}
+            {error && (
+                <Text title={t('Вы ввели неправильный логин или пароль')} theme={TextTheme.ERROR} />
+            )}
             <Input
                 type="text"
                 placeholder={t('Введите ник')}
