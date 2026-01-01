@@ -11,11 +11,21 @@ interface TextProps {
     title?: string;
     description?: string;
     theme?: TextTheme;
+    'data-testid'?: string;
 }
 
-export function Text({ className, title, description, theme = TextTheme.PRIMARY }: TextProps) {
+export function Text({
+    className,
+    title,
+    description,
+    theme = TextTheme.PRIMARY,
+    'data-testid': dataTestId,
+}: TextProps) {
     return (
-        <div className={classNames(cls.text, { [cls[theme]]: true }, [className])}>
+        <div
+            className={classNames(cls.text, { [cls[theme]]: true }, [className])}
+            data-testid={dataTestId}
+        >
             {title && <p className={cls.title}>{title}</p>}
             {description && <p className={cls.description}>{description}</p>}
         </div>
