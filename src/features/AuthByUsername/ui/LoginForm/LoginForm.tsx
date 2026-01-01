@@ -3,12 +3,12 @@ import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
-import { Button, Input } from 'shared/ui';
-import { Text, TextTheme } from 'shared/ui/Test/Text';
 import {
     DynamicModuleLoader,
     ReducersList,
-} from '../../../../shared/lib/helpers/DynamicModuleLoader/DynamicModuleLoader';
+} from 'shared/lib/helpers/DynamicModuleLoader/DynamicModuleLoader';
+import { Button, Input } from 'shared/ui';
+import { Text, TextTheme } from 'shared/ui/Test/Text';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
@@ -55,13 +55,14 @@ const LoginForm = React.memo(({ className }: LoginFormProps) => {
 
     return (
         <DynamicModuleLoader name="loginForm" reducers={initialReducers}>
-            <div className={classNames(cls.loginform, {}, [className])}>
-                <Text title={t('Форма авторизации')} />
+            <div className={classNames(cls.loginform, {}, [className])} data-testid="login-form">
+                <Text title={t('Форма авторизации')} data-testid="login-form-title" />
 
                 {error && (
                     <Text
                         title={t('Вы ввели неправильный логин или пароль')}
                         theme={TextTheme.ERROR}
+                        data-testid="login-form-error"
                     />
                 )}
                 <Input
@@ -70,14 +71,21 @@ const LoginForm = React.memo(({ className }: LoginFormProps) => {
                     onChange={onChangeUsername}
                     value={username}
                     autoFocus
+                    data-testid="username-input"
                 />
                 <Input
                     type="text"
                     placeholder={t('Введите пароль')}
                     onChange={onChangePassword}
                     value={password}
+                    data-testid="password-input"
                 />
-                <Button className={cls.loginBtn} onClick={onLoginClick} disabled={isLoading}>
+                <Button
+                    className={cls.loginBtn}
+                    onClick={onLoginClick}
+                    disabled={isLoading}
+                    data-testid="login-button"
+                >
                     {t('Войти')}
                 </Button>
             </div>
