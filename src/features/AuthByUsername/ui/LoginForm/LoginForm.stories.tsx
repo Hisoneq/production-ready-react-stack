@@ -1,8 +1,9 @@
-import { DeepPartial } from '@reduxjs/toolkit';
+import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
 import type { Meta, StoryObj } from '@storybook/react';
 import { StoreProvider } from 'app/providers/StoreProvider';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
-import { LoginForm } from './LoginForm';
+import { loginReducer } from '../../model/slice/loginSlice';
+import LoginForm from './LoginForm';
 
 const meta: Meta<typeof LoginForm> = {
     title: 'features/LoginForm',
@@ -19,8 +20,12 @@ const meta: Meta<typeof LoginForm> = {
                 },
             };
 
+            const asyncReducers: DeepPartial<ReducersMapObject<StateSchema>> = {
+                loginForm: loginReducer,
+            };
+
             return (
-                <StoreProvider initialState={initialState}>
+                <StoreProvider initialState={initialState} asyncReducers={asyncReducers}>
                     <Story />
                 </StoreProvider>
             );

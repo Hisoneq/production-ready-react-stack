@@ -19,7 +19,6 @@ export const decorators = [
         return (
             <BrowserRouter>
                 <div className={`app ${theme}`} style={{ padding: '20px' }}>
-                    {/* Добавь Suspense для i18next */}
                     <Suspense fallback={<div>Loading translations...</div>}>
                         <Story />
                     </Suspense>
