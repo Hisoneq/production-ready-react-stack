@@ -1,23 +1,18 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import AboutLogo from 'shared/assets/icons/AboutUsLogo.svg';
-import MainLogo from 'shared/assets/icons/mainLogo.svg';
+import React, { useState } from 'react';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
-import { AppLink, Button, ButtonTheme } from 'shared/ui';
-import { AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { Button, ButtonTheme } from 'shared/ui';
 import { LanguageSwitcher } from 'widgets/LanguageSwitcher';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
-import { RoutePath } from '../../../../shared/config/routeConfig/routeConfig';
+import { SideBarItemList } from '../../model/items';
+import { SideBarItem } from '../SideBarItem/SideBarItem';
 import cls from './SideBar.module.scss';
 
 interface SideBarProps {
     className?: string;
 }
 
-export function SideBar({ className }: SideBarProps) {
+export const SideBar = React.memo(({ className }: SideBarProps) => {
     const [isOpen, setIsOpen] = useState(true);
-
-    const { t } = useTranslation();
 
     const handleToggle = () => {
         setIsOpen((prev) => !prev);
@@ -29,15 +24,9 @@ export function SideBar({ className }: SideBarProps) {
             className={classNames(cls.sidebar, { [cls.isOpen]: isOpen }, [className])}
         >
             <div className={cls.items}>
-                <AppLink theme={AppLinkTheme.PRIMARY} to={RoutePath.main} className={cls.item}>
-                    <MainLogo className={cls.icon} />
-                    <span className={cls.link}>{t('Главная')}</span>
-                </AppLink>
-
-                <AppLink theme={AppLinkTheme.PRIMARY} to={RoutePath.about} className={cls.item}>
-                    <AboutLogo className={cls.icon} />
-                    <span className={cls.link}>{t('О сайте')}</span>
-                </AppLink>
+                {SideBarItemList.map((item) => {
+                    return <SideBarItem item={item} isOpen={isOpen} key={item.path} />;
+                })}
             </div>
 
             <Button
@@ -56,4 +45,4 @@ export function SideBar({ className }: SideBarProps) {
             </div>
         </div>
     );
-}
+});
