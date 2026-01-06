@@ -36,6 +36,7 @@ export default defineConfig([
                 ...globals.es2021,
                 React: 'readonly',
                 __IS_DEV__: 'readonly',
+                __API__: 'readonly',
             },
             parserOptions: {
                 ecmaVersion: 'latest',
