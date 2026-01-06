@@ -19,10 +19,10 @@ export function ComponentsRender(
     const { route = '/', initialState, asyncReducers } = options;
 
     return render(
-        <StoreProvider initialState={initialState} asyncReducers={asyncReducers}>
-            <MemoryRouter initialEntries={[route]}>
+        <MemoryRouter initialEntries={[route]}>
+            <StoreProvider initialState={initialState} asyncReducers={asyncReducers}>
                 <I18nextProvider i18n={i18nForTests}>{component}</I18nextProvider>{' '}
-            </MemoryRouter>
-        </StoreProvider>
+            </StoreProvider>
+        </MemoryRouter>
     );
 }

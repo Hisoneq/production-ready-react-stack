@@ -1,3 +1,4 @@
+import { ThunkExtraArg } from 'app/providers/StoreProvider';
 import axios from 'axios';
 import { User } from 'entities/User';
 import { loginByUsername } from './loginByUsername';
@@ -16,6 +17,11 @@ describe('loginByUsername', () => {
     const dispatch = jest.fn();
     const getState = jest.fn();
 
+    const mockExtra: ThunkExtraArg = {
+        api: mockedAxios,
+        navigate: jest.fn(),
+    };
+
     afterEach(() => {
         jest.clearAllMocks();
     });
@@ -27,9 +33,9 @@ describe('loginByUsername', () => {
         mockedAxios.post.mockResolvedValue({ data: userData });
 
         const action = loginByUsername(authData);
-        const result = await action(dispatch, getState, undefined);
+        const result = await action(dispatch, getState, mockExtra);
 
-        expect(mockedAxios.post).toHaveBeenCalledWith('http://localhost:8000/login', authData);
+        expect(mockedAxios.post).toHaveBeenCalledWith('/login', authData);
 
         expect(localStorage.setItem).toHaveBeenCalledWith('user', JSON.stringify(userData));
 
@@ -43,7 +49,7 @@ describe('loginByUsername', () => {
         mockedAxios.post.mockRejectedValue(new Error('Ошибка'));
 
         const action = loginByUsername(authData);
-        const result = await action(dispatch, getState, undefined);
+        const result = await action(dispatch, getState, mockExtra);
 
         expect(mockedAxios.post).toHaveBeenCalled();
 

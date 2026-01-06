@@ -1,6 +1,8 @@
+import { fetchProfileData, ProfileCard, profileReducer } from 'entities/Profile';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
-import { profileReducer } from '../../../entities/Profile';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import {
     DynamicModuleLoader,
     ReducersList,
@@ -13,13 +15,20 @@ interface ProfilePageProps {
 export default function ProfilePage({ className }: ProfilePageProps) {
     const { t } = useTranslation();
 
+    const dispatch = useAppDispatch();
+
     const reducers: ReducersList = {
         profile: profileReducer,
     };
 
+    useEffect(() => {
+        dispatch(fetchProfileData());
+    }, []);
+
     return (
         <DynamicModuleLoader name="profile" reducers={reducers}>
             <div className={classNames('', {}, [className])}>{t('Страница пользователя')}</div>
+            <ProfileCard />
         </DynamicModuleLoader>
     );
 }
