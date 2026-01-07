@@ -1,38 +1,38 @@
 {
-    "posts": [
-        {
-            "id": 1,
-            "title": "json-server",
-            "userId": 1
-        },
-        {
-            "id": 2,
-            "title": "json-server",
-            "userId": 2
-        }
-    ],
-    "comments": [
-        {
-            "id": 1,
-            "body": "some comment",
-            "postId": 1
-        }
-    ],
-    "users": [
-        {
-            "id": 1,
-            "username": "admin",
-            "password": "123"
-        }
-    ],
-    "profile": {
-        "first": "Роман",
-        "lastname": "Миронович",
-        "age": 19,
-        "currency": "BYN",
-        "country": "Belarus",
-        "city": "Minsk",
-        "username": "admin",
-        "avatar": "https://img.myloview.com/posters/it-support-icon-vector-person-with-laptop-computer-male-user-person-profile-avatar-globe-symbol-for-working-online-in-a-flat-color-glyph-pictogram-illustration-700-227645428.jpg"
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "json-server",
+      "userId": 2
     }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "123"
+    }
+  ],
+  "profile": {
+    "first": "Романasd",
+    "lastname": "Мироновичasd",
+    "age": 20,
+    "currency": "BYN",
+    "country": "Belarus",
+    "city": "Minskasa",
+    "username": "admin",
+    "avatar": "https://img.myloview.com/posters/it-support-icon-vector-person-with-laptop-computer-male-user-person-profile-avatar-globe-symbol-for-working-online-in-a-flat-color-glyph-pictogram-illustration-700-227645428.jpg"
+  }
 }
