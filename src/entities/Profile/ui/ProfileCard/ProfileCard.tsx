@@ -1,8 +1,9 @@
+import { Country, CountrySelect } from 'entities/Country';
+import { Currency, CurrencySelect } from 'entities/Currency';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
-import { Input, Loader, Text } from 'shared/ui';
-import { TextAlign, TextTheme } from 'shared/ui/Text/Text';
-import { ProfilePageHeader } from '../../../../pages/ProfilePage/ui/ProfilePageHeader/ProfilePageHeader';
+import { classNames, Mods } from 'shared/lib/helpers/classNames/classNames';
+import { Avatar, Input, Loader, Text } from 'shared/ui';
+import { TextAlign, TextTheme } from '../../../../shared/ui/Text/Text';
 import { Profile } from '../../model/types/Profile';
 import cls from './ProfileCard.module.scss';
 
@@ -12,10 +13,14 @@ interface ProfileCardProps {
     isLoading?: boolean;
     error?: string;
     readonly?: boolean;
-    onChangeFirstname: (value?: string) => void;
-    onChangeLastname: (value?: string) => void;
-    onChangeAge: (value?: string) => void;
-    onChangeCity: (value?: string) => void;
+    onChangeFirstname?: (value?: string) => void;
+    onChangeLastname?: (value?: string) => void;
+    onChangeAge?: (value?: string) => void;
+    onChangeCity?: (value?: string) => void;
+    onChangeAvatar?: (value?: string) => void;
+    onChangeUsername?: (value?: string) => void;
+    onChangeCurrency?: (currency: Currency) => void;
+    onChangeCountry?: (country: Country) => void;
 }
 
 export function ProfileCard({
@@ -28,6 +33,10 @@ export function ProfileCard({
     onChangeLastname,
     onChangeAge,
     onChangeCity,
+    onChangeAvatar,
+    onChangeUsername,
+    onChangeCurrency,
+    onChangeCountry,
 }: ProfileCardProps) {
     const { t } = useTranslation('profile');
 
@@ -59,9 +68,17 @@ export function ProfileCard({
         );
     }
 
+    const mods: Mods = {
+        [cls.editing]: !readonly,
+    };
+
     return (
-        <div className={classNames(cls.profilecard, {}, [className])}>
-            <ProfilePageHeader />
+        <div className={classNames(cls.profilecard, mods, [className])}>
+            {data?.avatar && (
+                <div className={cls.avatarWrapper}>
+                    <Avatar src={data?.avatar} />
+                </div>
+            )}
             <Input
                 value={data?.first}
                 placeholder={t('Ваше имя')}
@@ -97,6 +114,38 @@ export function ProfileCard({
                 readOnly={readonly}
                 pattern="^[A-Za-zА-Яа-яЁё\s\-'.]{2,50}$"
                 title={validationMessages.city}
+            />
+            <Input
+                value={data?.username}
+                placeholder={t('Ваш никнейм')}
+                className={cls.input}
+                onChange={onChangeUsername}
+                readOnly={readonly}
+                pattern="^[A-Za-zА-Яа-яЁё\s\-'.]{2,50}$"
+                title={validationMessages.city}
+            />
+            <Input
+                value={data?.avatar}
+                placeholder={t('Ссылка на аватарку')}
+                className={cls.input}
+                onChange={onChangeAvatar}
+                readOnly={readonly}
+                pattern="^[A-Za-zА-Яа-яЁё\s\-'.]{2,50}$"
+                title={validationMessages.city}
+            />
+
+            <CurrencySelect
+                value={data?.currency}
+                className={cls.input}
+                onChange={onChangeCurrency}
+                readonly={readonly}
+            />
+
+            <CountrySelect
+                value={data?.country}
+                className={cls.input}
+                onChange={onChangeCountry}
+                readonly={readonly}
             />
         </div>
     );

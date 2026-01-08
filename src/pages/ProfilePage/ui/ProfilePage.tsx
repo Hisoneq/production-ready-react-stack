@@ -11,10 +11,13 @@ import {
 import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { Country } from '../../../entities/Country';
+import { Currency } from '../../../entities/Currency';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from '../../../shared/lib/helpers/DynamicModuleLoader/DynamicModuleLoader';
+import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
 export default function ProfilePage() {
     const dispatch = useAppDispatch();
@@ -52,8 +55,29 @@ export default function ProfilePage() {
         [dispatch]
     );
 
+    const onChangeUsername = useCallback(
+        (value?: string) => dispatch(profileActions.updateData({ username: value || '' })),
+        [dispatch]
+    );
+
+    const onChangeAvatar = useCallback(
+        (value?: string) => dispatch(profileActions.updateData({ avatar: value || '' })),
+        [dispatch]
+    );
+
+    const onChangeCurrency = useCallback(
+        (currency: Currency) => dispatch(profileActions.updateData({ currency: currency })),
+        [dispatch]
+    );
+
+    const onChangeCountry = useCallback(
+        (value: Country) => dispatch(profileActions.updateData({ country: value })),
+        [dispatch]
+    );
+
     return (
         <DynamicModuleLoader name="profile" reducers={reducers}>
+            <ProfilePageHeader />
             <ProfileCard
                 data={formData}
                 error={error}
@@ -63,6 +87,10 @@ export default function ProfilePage() {
                 onChangeLastname={onChangeLastname}
                 onChangeAge={onChangeAge}
                 onChangeCity={onChangeCity}
+                onChangeUsername={onChangeUsername}
+                onChangeAvatar={onChangeAvatar}
+                onChangeCurrency={onChangeCurrency}
+                onChangeCountry={onChangeCountry}
             />
         </DynamicModuleLoader>
     );

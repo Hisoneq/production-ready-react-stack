@@ -38,6 +38,7 @@ export const ProfileSlice = createSlice({
                 state.isLoading = false;
                 state.data = action.payload;
                 state.form = action.payload;
+                state.readonly = true;
             })
             .addCase(fetchProfileData.rejected, (state, action) => {
                 state.isLoading = false;
