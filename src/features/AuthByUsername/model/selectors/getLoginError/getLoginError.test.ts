@@ -7,6 +7,9 @@ describe('getLoginError', () => {
         const state: DeepPartial<StateSchema> = {
             loginForm: {
                 error: 'error',
+                username: '',
+                password: '',
+                isLoading: false,
             },
         };
         expect(getLoginError(state as StateSchema)).toEqual('error');
@@ -16,6 +19,9 @@ describe('getLoginError', () => {
         const state: DeepPartial<StateSchema> = {
             loginForm: {
                 error: undefined,
+                username: '',
+                password: '',
+                isLoading: false,
             },
         };
         expect(getLoginError(state as StateSchema)).toEqual('');
