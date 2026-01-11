@@ -18,12 +18,10 @@ describe('getUserAuthData', () => {
         });
     });
 
-    test('should return empty obj', () => {
+    test('should return undef', () => {
         const state: DeepPartial<StateSchema> = {
-            user: {
-                authData: {},
-            },
+            user: {},
         };
-        expect(getUserAuthData(state as StateSchema)).toEqual({});
+        expect(getUserAuthData(state as StateSchema)).toEqual(undefined);
     });
 });
