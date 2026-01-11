@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { <FTName> } from './<FTName>';
+import ArticlesDetailPage from './ArticlesDetailPage';
 
-const meta: Meta<typeof <FTName>> = {
-    title: 'urFolder/<FTName>',
-    component: <FTName>,
+const meta: Meta<typeof ArticlesDetailPage> = {
+    title: 'urFolder/ArticlesDetailPage',
+    component: ArticlesDetailPage,
     tags: ['autodocs'],
     argTypes: {
         className: {
@@ -11,11 +11,11 @@ const meta: Meta<typeof <FTName>> = {
             description: 'Дополнительный CSS класс',
         },
     },
-    args: {}
+    args: {},
 };
 
 export default meta;
-type Story = StoryObj<typeof <FTName>>;
+type Story = StoryObj<typeof ArticlesDetailPage>;
 
 export const Default: Story = {
     args: {},

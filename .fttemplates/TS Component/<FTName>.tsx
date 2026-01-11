@@ -8,7 +8,7 @@ interface <FTName>Props {
 
 export const <FTName> = React.memo(({ className }: <FTName>Props) => {
     return (
-        <div className={classNames(cls.<FTName | kebabcase>, {}, [className])}>
+        <div className={classNames(cls.<FTName | camelcase>, {}, [className])}>
             {/* Component content */}
         </div>
     );

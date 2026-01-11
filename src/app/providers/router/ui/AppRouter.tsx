@@ -23,18 +23,7 @@ export default function AppRouter() {
 
     return (
         <Suspense fallback={<PageLoader />}>
-            <Routes>
-                {Object.values(routeConfig).map(renderWithWrapper)}
-                {/* {routes.map(({ element, path }) => {
-                    return (
-                        <Route
-                            key={path}
-                            path={path}
-                            element={<div className="page-wrapper">{element}</div>}
-                        />
-                    );
-                })} */}
-            </Routes>
+            <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>
         </Suspense>
     );
 }
