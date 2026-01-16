@@ -34,13 +34,13 @@
                 {
                     "id": "2",
                     "type": "CODE",
-                    "code": "console.log('templateCode')"
+                    "code": "console.log('templateCode');"
                 },
                 {
                     "id": "3",
                     "type": "IMAGE",
-                    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2048px-Unofficial_JavaScript_logo_2.svg.png",
-                    "title": "Рисунок 1 - JS logo"
+                    "src": "https://habrastorage.org/r/w1560/getpro/habr/upload_files/b0d/c84/4d8/b0dc844d8e03ffc246764d9100d20f7f.png",
+                    "title": "Рисунок 1 - Пост CEO Tailwind"
                 }
             ]
         }

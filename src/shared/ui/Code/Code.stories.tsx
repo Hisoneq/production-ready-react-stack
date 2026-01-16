@@ -1,21 +1,26 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ArticleTextBlockComp } from './ArticleTextBlockComp';
+import { Code } from './Code';
 
-const meta: Meta<typeof ArticleTextBlockComp> = {
-    title: 'urFolder/ArticleTextBlockComp',
-    component: ArticleTextBlockComp,
+const meta: Meta<typeof Code> = {
+    title: 'shared/Code',
+    component: Code,
     tags: ['autodocs'],
     argTypes: {
         className: {
             control: 'text',
             description: 'Дополнительный CSS класс',
         },
+        text: {
+            control: 'text',
+        },
     },
-    args: {},
+    args: {
+        text: 'console.log("Hello world!")',
+    },
 };
 
 export default meta;
-type Story = StoryObj<typeof ArticleTextBlockComp>;
+type Story = StoryObj<typeof Code>;
 
 export const Default: Story = {
     args: {},
