@@ -1,14 +1,15 @@
 .app.light {
-    // Светлая тема - светло-синий фон, зеленый текст (как в консоли)
     --bg-color: #e6e6ff;
-    // Хедер всегда темный для контраста
     --inverted-bg-color: #1a1a3a;
-
-    // Текст всегда зеленый (консольный стиль)
     --primary-color: #00cc66;
     --secondary-color: #00ff88;
-
-    // Инвертированные (консольные зеленые цвета для элементов на темном фоне хедера)
     --inverted-primary-color: #00ff00;
     --inverted-secondary-color: #00ff88;
+
+    // skeleton
+    --skeleton-shadow: rgb(0 0 0 / 20%);
+    --skeleton-color: #ffffff;
+
+    // code
+    --code-bg: #fff;
 }

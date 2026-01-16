@@ -1,3 +1,11 @@
+.applink {
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
 .primary {
     color: var(--primary-color);
 }

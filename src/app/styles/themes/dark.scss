@@ -1,14 +1,15 @@
 .app.dark {
-    // Консольные цвета старого терминала - темно-синий фон, зеленый текст
     --bg-color: #000033;
     --inverted-bg-color: #1a1a3a;
-
-    // Основной текст - зеленый консольный (хорошо виден на синем фоне)
     --primary-color: #00ff00;
-    // Вторичный текст - более светлый зеленый
     --secondary-color: #00ff88;
-
-    // Инвертированные цвета (для элементов на темном фоне, например хедер)
     --inverted-primary-color: #00ff00;
     --inverted-secondary-color: #00ff88;
+
+    // skeleton
+    --skeleton-shadow: #1515ad;
+    --skeleton-color: #2b2be8;
+
+    // code
+    --code-bg: #00006d;
 }
