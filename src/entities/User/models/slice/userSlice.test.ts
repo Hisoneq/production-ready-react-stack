@@ -33,6 +33,7 @@ describe('UserSlice', () => {
         const state: DeepPartial<UserSchema> = {};
 
         expect(userReducer(state as UserSchema, userActions.initAuthData())).toEqual({
+            _inited: true,
             authData: mockUser,
         });
     });

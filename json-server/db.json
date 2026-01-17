@@ -70,13 +70,15 @@
             "id": 1,
             "username": "admin",
             "password": "123",
-            "role": "ADMIN"
+            "role": "ADMIN",
+            "avatar": "https://img.myloview.com/posters/it-support-icon-vector-person-with-laptop-computer-male-user-person-profile-avatar-globe-symbol-for-working-online-in-a-flat-color-glyph-pictogram-illustration-700-227645428.jpg"
         },
         {
             "id": 2,
             "username": "testUser",
             "password": "123",
-            "role": "USER"
+            "role": "USER",
+            "avatar": "https://img.myloview.com/posters/it-support-icon-vector-person-with-laptop-computer-male-user-person-profile-avatar-globe-symbol-for-working-online-in-a-flat-color-glyph-pictogram-illustration-700-227645428.jpg"
         }
     ],
     "profile": {
