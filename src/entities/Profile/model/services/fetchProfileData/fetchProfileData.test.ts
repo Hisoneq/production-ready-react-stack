@@ -20,7 +20,7 @@ const mockProfileData = {
 };
 
 describe('fetchProfileData', () => {
-    let thunk: TestAsyncThunk<Profile, void, string>;
+    let thunk: TestAsyncThunk<Profile, string | undefined, string>;
 
     beforeEach(() => {
         thunk = new TestAsyncThunk(fetchProfileData);
@@ -33,9 +33,9 @@ describe('fetchProfileData', () => {
     test('success', async () => {
         mockedAxios.get.mockResolvedValue({ data: mockProfileData });
 
-        const result = await thunk.callThunk();
+        const result = await thunk.callThunk('1');
 
-        expect(mockedAxios.get).toHaveBeenCalledWith('/profile');
+        expect(mockedAxios.get).toHaveBeenCalledWith('/profile/1');
 
         expect(result.meta.requestStatus).toBe('fulfilled');
         expect(result.payload).toEqual(mockProfileData);
@@ -44,11 +44,20 @@ describe('fetchProfileData', () => {
     test('error', async () => {
         mockedAxios.get.mockRejectedValue(new Error('Network Error'));
 
-        const result = await thunk.callThunk();
+        const result = await thunk.callThunk('1');
 
-        expect(mockedAxios.get).toHaveBeenCalledWith('/profile');
+        expect(mockedAxios.get).toHaveBeenCalledWith('/profile/1');
 
         expect(result.meta.requestStatus).toBe('rejected');
         expect(result.payload).toBe('Ошибочка');
+    });
+
+    test('undefined', async () => {
+        const result = await thunk.callThunk(undefined);
+
+        expect(mockedAxios.get).not.toHaveBeenCalled();
+
+        expect(result.meta.requestStatus).toBe('rejected');
+        expect(result.payload).toBe('Не указан id');
     });
 });

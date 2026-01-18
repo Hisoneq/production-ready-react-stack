@@ -9,6 +9,7 @@ jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 const mockProfileData = {
+    id: '1',
     username: 'testuser',
     age: 25,
     country: Country.Belarus,
@@ -49,7 +50,10 @@ describe('updateProfileData', () => {
         const action = updateProfileData();
         const result = await action(dispatch, getState, extra);
 
-        expect(mockedAxios.put).toHaveBeenCalledWith('/profile', mockProfileData);
+        expect(mockedAxios.put).toHaveBeenCalledWith(
+            `/profile/${mockProfileData.id}`,
+            mockProfileData
+        );
         expect(result.meta.requestStatus).toBe('fulfilled');
         expect(result.payload).toEqual(mockProfileData);
     });
@@ -67,7 +71,10 @@ describe('updateProfileData', () => {
         const action = updateProfileData();
         const result = await action(dispatch, getState, extra);
 
-        expect(mockedAxios.put).toHaveBeenCalledWith('/profile', mockProfileData);
+        expect(mockedAxios.put).toHaveBeenCalledWith(
+            `/profile/${mockProfileData.id}`,
+            mockProfileData
+        );
         expect(result.meta.requestStatus).toBe('rejected');
         expect(result.payload).toBe('Ошибочка');
     });

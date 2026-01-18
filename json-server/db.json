@@ -1,94 +1,146 @@
 {
-    "posts": [
-        {
-            "id": 1,
-            "title": "json-server",
-            "userId": 1
-        },
-        {
-            "id": 2,
-            "title": "json-server",
-            "userId": 2
-        }
-    ],
-    "articles": [
-        {
-            "id": "1",
-            "title": "JS news",
-            "subtitle": "Subtitle for this js article",
-            "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2048px-Unofficial_JavaScript_logo_2.svg.png",
-            "views": 67,
-            "createdAt": "16.01.2026",
-            "type": ["IT"],
-            "blocks": [
-                {
-                    "id": "1",
-                    "type": "TEXT",
-                    "title": "Заголовок блока",
-                    "paragraphs": [
-                        "07.01.2026 Tailwind Labs — компания, стоящая за фреймворком Tailwind CSS, — уволила 75% инженеров на фоне резкого падения выручки примерно на 80%. Об этом стало известно во время обсуждения добавления файла llm.txt на сайт проекта.",
-                        "С начала 2023 года трафик документации снизился примерно на 40%, несмотря на продолжающийся рост популярности Tailwind. По словам представителей компании, причиной стал активный рост ИИ-инструментов, которые умеют генерировать UI-компоненты и тем самым снижают спрос на платные продукты, такие как Tailwind UI.",
-                        "С другой стороны, сама популярность Tailwind как технологии продолжает расти: фреймворк всё активнее внедряется компаниями и разработчиками по всему миру. Это создаёт риск своеобразного «вендор-лока»: если Tailwind Labs из-за финансового давления будет вынуждена перейти к более жёсткой коммерческой модели или сократить открытые инициативы, бизнесы, сильно зависящие от экосистемы Tailwind, могут оказаться в уязвимом положении."
-                    ]
-                },
-                {
-                    "id": "2",
-                    "type": "CODE",
-                    "code": "console.log('templateCode');"
-                },
-                {
-                    "id": "3",
-                    "type": "IMAGE",
-                    "src": "https://habrastorage.org/r/w1560/getpro/habr/upload_files/b0d/c84/4d8/b0dc844d8e03ffc246764d9100d20f7f.png",
-                    "title": "Рисунок 1 - Пост CEO Tailwind"
-                }
-            ]
-        }
-    ],
-    "comments": [
-        {
-            "id": 1,
-            "text": "some comment",
-            "articleId": "1",
-            "userId": "1"
-        },
-        {
-            "id": 2,
-            "text": "some comment 2",
-            "articleId": "1",
-            "userId": "1"
-        },
-        {
-            "id": 3,
-            "text": "some comment 3",
-            "articleId": "1",
-            "userId": "1"
-        }
-    ],
-    "users": [
-        {
-            "id": 1,
-            "username": "admin",
-            "password": "123",
-            "role": "ADMIN",
-            "avatar": "https://img.myloview.com/posters/it-support-icon-vector-person-with-laptop-computer-male-user-person-profile-avatar-globe-symbol-for-working-online-in-a-flat-color-glyph-pictogram-illustration-700-227645428.jpg"
-        },
-        {
-            "id": 2,
-            "username": "testUser",
-            "password": "123",
-            "role": "USER",
-            "avatar": "https://img.myloview.com/posters/it-support-icon-vector-person-with-laptop-computer-male-user-person-profile-avatar-globe-symbol-for-working-online-in-a-flat-color-glyph-pictogram-illustration-700-227645428.jpg"
-        }
-    ],
-    "profile": {
-        "first": "Роман",
-        "lastname": "Миронович",
-        "age": 20,
-        "currency": "EUR",
-        "country": "Russia",
-        "city": "Minskasa",
-        "username": "admin",
-        "avatar": "https://img.myloview.com/posters/it-support-icon-vector-person-with-laptop-computer-male-user-person-profile-avatar-globe-symbol-for-working-online-in-a-flat-color-glyph-pictogram-illustration-700-227645428.jpg"
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "json-server",
+      "userId": 2
     }
+  ],
+  "articles": [
+    {
+      "id": "1",
+      "title": "JS news",
+      "subtitle": "Subtitle for this js article",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2048px-Unofficial_JavaScript_logo_2.svg.png",
+      "views": 67,
+      "createdAt": "16.01.2026",
+      "type": [
+        "IT"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок блока",
+          "paragraphs": [
+            "07.01.2026 Tailwind Labs — компания, стоящая за фреймворком Tailwind CSS, — уволила 75% инженеров на фоне резкого падения выручки примерно на 80%. Об этом стало известно во время обсуждения добавления файла llm.txt на сайт проекта.",
+            "С начала 2023 года трафик документации снизился примерно на 40%, несмотря на продолжающийся рост популярности Tailwind. По словам представителей компании, причиной стал активный рост ИИ-инструментов, которые умеют генерировать UI-компоненты и тем самым снижают спрос на платные продукты, такие как Tailwind UI.",
+            "С другой стороны, сама популярность Tailwind как технологии продолжает расти: фреймворк всё активнее внедряется компаниями и разработчиками по всему миру. Это создаёт риск своеобразного «вендор-лока»: если Tailwind Labs из-за финансового давления будет вынуждена перейти к более жёсткой коммерческой модели или сократить открытые инициативы, бизнесы, сильно зависящие от экосистемы Tailwind, могут оказаться в уязвимом положении."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "console.log('templateCode');"
+        },
+        {
+          "id": "3",
+          "type": "IMAGE",
+          "src": "https://habrastorage.org/r/w1560/getpro/habr/upload_files/b0d/c84/4d8/b0dc844d8e03ffc246764d9100d20f7f.png",
+          "title": "Рисунок 1 - Пост CEO Tailwind"
+        }
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "text": "some comment",
+      "articleId": "1",
+      "userId": "1"
+    },
+    {
+      "id": 2,
+      "text": "some comment 2",
+      "articleId": "1",
+      "userId": "1"
+    },
+    {
+      "id": 3,
+      "text": "some comment 3",
+      "articleId": "1",
+      "userId": "1"
+    },
+    {
+      "articleId": "1",
+      "userId": 1,
+      "text": "123",
+      "id": 4
+    },
+    {
+      "articleId": "1",
+      "userId": 2,
+      "text": "qwe",
+      "id": 5
+    },
+    {
+      "articleId": "1",
+      "userId": 2,
+      "text": "qwe",
+      "id": 6
+    },
+    {
+      "articleId": "1",
+      "userId": 2,
+      "text": "pisun",
+      "id": 7
+    },
+    {
+      "articleId": "1",
+      "userId": 2,
+      "text": "tmep",
+      "id": 8
+    },
+    {
+      "articleId": "1",
+      "userId": 1,
+      "text": "qe",
+      "id": 9
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "123",
+      "role": "ADMIN",
+      "avatar": "https://img.myloview.com/posters/it-support-icon-vector-person-with-laptop-computer-male-user-person-profile-avatar-globe-symbol-for-working-online-in-a-flat-color-glyph-pictogram-illustration-700-227645428.jpg"
+    },
+    {
+      "id": 2,
+      "username": "testUser",
+      "password": "123",
+      "role": "USER",
+      "avatar": "https://img.myloview.com/posters/it-support-icon-vector-person-with-laptop-computer-male-user-person-profile-avatar-globe-symbol-for-working-online-in-a-flat-color-glyph-pictogram-illustration-700-227645428.jpg"
+    }
+  ],
+  "profile": [
+    {
+      "id": "1",
+      "first": "Роман",
+      "lastname": "Миронович",
+      "age": 20,
+      "currency": "EUR",
+      "country": "Russia",
+      "city": "Minskasa",
+      "username": "admin",
+      "avatar": "https://img.myloview.com/posters/it-support-icon-vector-person-with-laptop-computer-male-user-person-profile-avatar-globe-symbol-for-working-online-in-a-flat-color-glyph-pictogram-illustration-700-227645428.jpg"
+    },
+    {
+      "id": "2",
+      "first": "Писюн",
+      "lastname": "Писюнович",
+      "age": 19,
+      "currency": "BYN",
+      "country": "Belarus",
+      "city": "Minsk",
+      "username": "user",
+      "avatar": "https://img.myloview.com/posters/it-support-icon-vector-person-with-laptop-computer-male-user-person-profile-avatar-globe-symbol-for-working-online-in-a-flat-color-glyph-pictogram-illustration-700-227645428.jpg"
+    }
+  ]
 }

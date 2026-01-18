@@ -10,6 +10,7 @@ import {
 } from 'entities/Profile';
 import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { Country } from '../../../entities/Country';
 import { Currency } from '../../../entities/Currency';
@@ -26,6 +27,7 @@ export default function ProfilePage() {
     const error = useSelector(getProfileError);
     const isLoading = useSelector(getProfileIsLoading);
     const readonly = useSelector(getProfileReadonly);
+    const { id } = useParams<{ id: string }>();
 
     const reducers: ReducersList = {
         profile: profileReducer,
@@ -33,7 +35,7 @@ export default function ProfilePage() {
 
     useEffect(() => {
         if (__PROJECT__ !== 'storybook') {
-            dispatch(fetchProfileData());
+            dispatch(fetchProfileData(id));
         }
     }, []);
 
