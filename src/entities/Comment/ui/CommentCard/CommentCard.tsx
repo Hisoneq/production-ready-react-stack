@@ -1,7 +1,8 @@
 import React from 'react';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
-import { Avatar, Text } from '../../../../shared/ui';
-import { Sketeton } from '../../../../shared/ui/Sketeton/Sketeton';
+import { AppLink, Avatar, Text } from 'shared/ui';
+import { Sketeton } from 'shared/ui/Sketeton/Sketeton';
 import type { Comment } from '../../model/types/comments';
 import cls from './CommentCard.module.scss';
 
@@ -27,10 +28,10 @@ export const CommentCard = React.memo(({ className, comment, isLoading }: Commen
 
     return (
         <div className={classNames(cls.commentCard, {}, [className])}>
-            <div className={cls.header}>
+            <AppLink to={`${RoutePath.profile}${comment.user.id}`} className={cls.header}>
                 {comment.user.avatar && <Avatar size={30} src={comment.user.avatar} />}
                 <Text className={cls.username} title={comment.user.username} />
-            </div>
+            </AppLink>
 
             <Text description={comment.text} className={cls.text} />
         </div>

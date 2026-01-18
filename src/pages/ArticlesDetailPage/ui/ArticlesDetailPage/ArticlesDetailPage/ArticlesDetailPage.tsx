@@ -1,6 +1,7 @@
 import { ArticleDetails } from 'entities/Article';
 import { CommentList } from 'entities/Comment';
-import { useEffect } from 'react';
+import { AddNewComment } from 'features/addNewComment';
+import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -9,9 +10,10 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/helpers/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { Text } from 'shared/ui';
-import { useAppDispatch } from '../../../../../shared/lib/hooks/useAppDispatch';
 import { getArticleCommentsIsLoading } from '../../../model/selectors/comments';
+import { addCommentForArticle } from '../../../model/services/addCommentForArticle/addCommentForArticle';
 import { fetchCommentsByArticleId } from '../../../model/services/fetchCommentsByArticleId.ts/fetchCommentsByArticleId';
 import {
     articleDetailsCommentsReducer,
@@ -51,10 +53,15 @@ export default function ArticlesDetailPage({ className }: ArticlesDetailPageProp
         );
     }
 
+    const handelSendComment = useCallback((text: string) => {
+        dispatch(addCommentForArticle(text));
+    }, []);
+
     return (
         <DynamicModuleLoader reducers={reducers} name="articleDetailsComments">
             <div className={classNames(cls.articlesDetailPage, {}, [className])}>
                 <ArticleDetails id={id} />
+                <AddNewComment handelSendComment={handelSendComment} />
                 <Text className={cls.commentTitle} title={t('Комментарии')} />
                 <CommentList isLoading={isLoading} comments={comments} />
             </div>
