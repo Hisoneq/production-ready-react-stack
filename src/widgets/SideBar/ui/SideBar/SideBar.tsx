@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import { Button, ButtonTheme } from 'shared/ui';
 import { LanguageSwitcher } from 'widgets/LanguageSwitcher';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
-import { SideBarItemList } from '../../model/items';
+import { getSidebarItems } from '../../model/selectors/getSideBarItems';
 import { SideBarItem } from '../SideBarItem/SideBarItem';
 import cls from './SideBar.module.scss';
 
@@ -13,6 +14,7 @@ interface SideBarProps {
 
 export const SideBar = React.memo(({ className }: SideBarProps) => {
     const [isOpen, setIsOpen] = useState(true);
+    const sideBarItemList = useSelector(getSidebarItems);
 
     const handleToggle = () => {
         setIsOpen((prev) => !prev);
@@ -24,7 +26,7 @@ export const SideBar = React.memo(({ className }: SideBarProps) => {
             className={classNames(cls.sidebar, { [cls.isOpen]: isOpen }, [className])}
         >
             <div className={cls.items}>
-                {SideBarItemList.map((item) => {
+                {sideBarItemList.map((item) => {
                     return <SideBarItem item={item} isOpen={isOpen} key={item.path} />;
                 })}
             </div>
