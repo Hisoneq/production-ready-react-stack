@@ -1,37 +1,30 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator';
-import { Article, ArticleBlockTypes, ArticleTypes } from '../../model/types/article';
-import { ArticleDetails } from './ArticleDetails';
+import { Article, ArticleList, ArticleView } from 'entities/Article';
+import { useTranslation } from 'react-i18next';
+import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import cls from './ArticlePage.module.scss';
 
-const meta: Meta<typeof ArticleDetails> = {
-    title: 'entities/ArticleDetails',
-    component: ArticleDetails,
-    tags: ['autodocs'],
-    args: {
-        id: '1',
-    },
-    decorators: [StoreDecorator()],
-};
+interface ArticlesPageProps {
+    className?: string;
+}
 
-export default meta;
-type Story = StoryObj<typeof ArticleDetails>;
-
-const artice: Article = {
+const articleMock = {
     id: '1',
     user: {
         id: '1',
         username: 'hisone',
+        avatar: 'https://as1.ftcdn.net/jpg/02/98/08/90/1000_F_298089025_M5g7h3Y3o5y2Aptfe0VKLMHHbsvThQdt.jpg',
     },
     title: 'JS news',
     subtitle: 'Subtitle for this js article',
     img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2048px-Unofficial_JavaScript_logo_2.svg.png',
     views: 67,
     createdAt: '16.01.2026',
-    type: [ArticleTypes.IT],
+    userId: '1',
+    type: ['IT'],
     blocks: [
         {
             id: '1',
-            type: ArticleBlockTypes.TEXT,
+            type: 'TEXT',
             title: 'Заголовок блока',
             paragraphs: [
                 '07.01.2026 Tailwind Labs — компания, стоящая за фреймворком Tailwind CSS, — уволила 75% инженеров на фоне резкого падения выручки примерно на 80%. Об этом стало известно во время обсуждения добавления файла llm.txt на сайт проекта.',
@@ -41,52 +34,28 @@ const artice: Article = {
         },
         {
             id: '2',
-            type: ArticleBlockTypes.CODE,
+            type: 'CODE',
             code: "console.log('templateCode');",
         },
         {
             id: '3',
-            type: ArticleBlockTypes.IMAGE,
+            type: 'IMAGE',
             src: 'https://habrastorage.org/r/w1560/getpro/habr/upload_files/b0d/c84/4d8/b0dc844d8e03ffc246764d9100d20f7f.png',
             title: 'Рисунок 1 - Пост CEO Tailwind',
         },
     ],
-};
+} as Article;
 
-export const Default: Story = {
-    decorators: [
-        StoreDecorator({
-            initialState: {
-                articleDetail: {
-                    data: artice,
-                    isLoading: false,
-                },
-            },
-        }),
-    ],
-};
+export default function ArticlesPage({ className }: ArticlesPageProps) {
+    const { t } = useTranslation('article');
 
-export const Loading: Story = {
-    decorators: [
-        StoreDecorator({
-            initialState: {
-                articleDetail: {
-                    isLoading: true,
-                },
-            },
-        }),
-    ],
-};
-
-export const Error: Story = {
-    decorators: [
-        StoreDecorator({
-            initialState: {
-                articleDetail: {
-                    isLoading: false,
-                    error: 'error',
-                },
-            },
-        }),
-    ],
-};
+    return (
+        <div className={classNames(cls.articlesPage, {}, [className])}>
+            <ArticleList
+                articles={[articleMock, articleMock]}
+                isLoading={true}
+                view={ArticleView.BIG}
+            />
+        </div>
+    );
+}

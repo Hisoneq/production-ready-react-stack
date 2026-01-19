@@ -4,14 +4,15 @@ import { AddNewComment } from 'features/addNewComment';
 import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/helpers/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { Text } from 'shared/ui';
+import { Button, ButtonTheme, Text } from 'shared/ui';
 import { getArticleCommentsIsLoading } from '../../../model/selectors/comments';
 import { addCommentForArticle } from '../../../model/services/addCommentForArticle/addCommentForArticle';
 import { fetchCommentsByArticleId } from '../../../model/services/fetchCommentsByArticleId.ts/fetchCommentsByArticleId';
@@ -28,6 +29,7 @@ interface ArticlesDetailPageProps {
 export default function ArticlesDetailPage({ className }: ArticlesDetailPageProps) {
     const { id } = useParams<{ id: string }>();
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const { t } = useTranslation('article');
 
@@ -57,9 +59,16 @@ export default function ArticlesDetailPage({ className }: ArticlesDetailPageProp
         dispatch(addCommentForArticle(text));
     }, []);
 
+    const onBackToArticles = useCallback(() => {
+        navigate(RoutePath.article);
+    }, []);
+
     return (
         <DynamicModuleLoader reducers={reducers} name="articleDetailsComments">
             <div className={classNames(cls.articlesDetailPage, {}, [className])}>
+                <Button onClick={onBackToArticles} theme={ButtonTheme.OUTLINE}>
+                    {t('Назад к статьям')}
+                </Button>
                 <ArticleDetails id={id} />
                 <AddNewComment handelSendComment={handelSendComment} />
                 <Text className={cls.commentTitle} title={t('Комментарии')} />
