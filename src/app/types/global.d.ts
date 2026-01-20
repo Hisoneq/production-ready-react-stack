@@ -28,6 +28,12 @@ declare module '*.svg' {
   export default SVG;
 }
 
+declare module '*.stories.tsx' {
+    const component: any;
+    export default component;
+  }
+
+  
 declare module '*.png';
 declare module '*.jpeg';
 declare module '*.jpg';

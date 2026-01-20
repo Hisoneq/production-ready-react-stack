@@ -20,15 +20,9 @@ const generateSkeletons = (view: ArticleView) => {
 
 export const ArticleList = React.memo(
     ({ className, articles, isLoading, view = ArticleView.BIG }: ArticleListProps) => {
-        if (isLoading) {
-            return (
-                <div className={classNames(cls.articleList, {}, [className, cls[view]])}>
-                    {generateSkeletons(view)}
-                </div>
-            );
-        }
+        const contentKey = isLoading ? 'skeletons' : `articles-${articles.length}`;
 
-        const rendreArticle = (article: Article) => {
+        const renderArticle = (article: Article) => {
             return (
                 <ArticleListItem
                     key={article.id}
@@ -40,8 +34,15 @@ export const ArticleList = React.memo(
         };
 
         return (
-            <div className={classNames(cls.articleList, {}, [className, cls[view]])}>
-                {articles.length > 0 ? articles.map(rendreArticle) : null}
+            <div
+                key={contentKey}
+                className={classNames(cls.articleList, {}, [className, cls[view]])}
+            >
+                {isLoading
+                    ? generateSkeletons(view)
+                    : articles.length > 0
+                      ? articles.map(renderArticle)
+                      : null}
             </div>
         );
     }
