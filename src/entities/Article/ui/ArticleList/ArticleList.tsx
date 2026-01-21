@@ -15,13 +15,13 @@ interface ArticleListProps {
 const generateSkeletons = (view: ArticleView) => {
     return new Array(view === ArticleView.BIG ? 3 : 9)
         .fill(0)
-        .map((index) => <ArticleListItemSkeleton view={view} key={index} className={cls.card} />);
+        .map((_, index) => (
+            <ArticleListItemSkeleton view={view} key={index} className={cls.card} />
+        ));
 };
 
 export const ArticleList = React.memo(
     ({ className, articles, isLoading, view = ArticleView.BIG }: ArticleListProps) => {
-        const contentKey = isLoading ? 'skeletons' : `articles-${articles.length}`;
-
         const renderArticle = (article: Article) => {
             return (
                 <ArticleListItem
@@ -34,15 +34,9 @@ export const ArticleList = React.memo(
         };
 
         return (
-            <div
-                key={contentKey}
-                className={classNames(cls.articleList, {}, [className, cls[view]])}
-            >
-                {isLoading
-                    ? generateSkeletons(view)
-                    : articles.length > 0
-                      ? articles.map(renderArticle)
-                      : null}
+            <div className={classNames(cls.articleList, {}, [className, cls[view]])}>
+                {articles.length > 0 ? articles.map(renderArticle) : null}
+                {isLoading && generateSkeletons(view)}
             </div>
         );
     }

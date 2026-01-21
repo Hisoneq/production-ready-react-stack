@@ -21,7 +21,7 @@ export const SideBar = React.memo(({ className }: SideBarProps) => {
     };
 
     return (
-        <div
+        <aside
             data-testid="sidebar"
             className={classNames(cls.sidebar, { [cls.isOpen]: isOpen }, [className])}
         >
@@ -45,6 +45,6 @@ export const SideBar = React.memo(({ className }: SideBarProps) => {
                 <ThemeSwitcher />
                 <LanguageSwitcher className={cls.lang} short={isOpen} />
             </div>
-        </div>
+        </aside>
     );
 });

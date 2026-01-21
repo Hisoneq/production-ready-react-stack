@@ -13,6 +13,7 @@ import {
 } from 'shared/lib/helpers/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { Button, ButtonTheme, Text } from 'shared/ui';
+import { Page } from 'shared/ui/Page/Page';
 import { getArticleCommentsIsLoading } from '../../../model/selectors/comments';
 import { addCommentForArticle } from '../../../model/services/addCommentForArticle/addCommentForArticle';
 import { fetchCommentsByArticleId } from '../../../model/services/fetchCommentsByArticleId.ts/fetchCommentsByArticleId';
@@ -49,9 +50,9 @@ export default function ArticlesDetailPage({ className }: ArticlesDetailPageProp
 
     if (!id) {
         return (
-            <div className={classNames(cls.articlesDetailPage, {}, [className])}>
+            <Page className={classNames(cls.articlesDetailPage, {}, [className])}>
                 {t('Статья не найдена.')}
-            </div>
+            </Page>
         );
     }
 
@@ -65,7 +66,7 @@ export default function ArticlesDetailPage({ className }: ArticlesDetailPageProp
 
     return (
         <DynamicModuleLoader reducers={reducers} name="articleDetailsComments">
-            <div className={classNames(cls.articlesDetailPage, {}, [className])}>
+            <Page className={classNames(cls.articlesDetailPage, {}, [className])}>
                 <Button onClick={onBackToArticles} theme={ButtonTheme.OUTLINE}>
                     {t('Назад к статьям')}
                 </Button>
@@ -73,7 +74,7 @@ export default function ArticlesDetailPage({ className }: ArticlesDetailPageProp
                 <AddNewComment handelSendComment={handelSendComment} />
                 <Text className={cls.commentTitle} title={t('Комментарии')} />
                 <CommentList isLoading={isLoading} comments={comments} />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     );
 }
