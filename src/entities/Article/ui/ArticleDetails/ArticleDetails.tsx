@@ -10,7 +10,7 @@ import {
 } from 'shared/lib/helpers/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { Avatar, Text } from 'shared/ui';
-import { Sketeton } from 'shared/ui/Sketeton/Sketeton';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { TextAlign, TextSize } from 'shared/ui/Text/Text';
 import { Icon } from '../../../../shared/ui/Icon/Icon';
 import {
@@ -68,11 +68,11 @@ export const ArticleDetails = React.memo(({ className, id }: ArticleDetailsProps
     if (isLoading) {
         content = (
             <>
-                <Sketeton className={cls.avatar} width={200} height={200} border={'50%'} />
-                <Sketeton className={cls.title} width={300} height={32} />
-                <Sketeton className={cls.skeleton} width={600} height={32} />
-                <Sketeton className={cls.skeleton} width={'100%'} height={200} />
-                <Sketeton className={cls.skeleton} width={'100%'} height={200} />
+                <Skeleton className={cls.avatar} width={200} height={200} border={'50%'} />
+                <Skeleton className={cls.title} width={300} height={32} />
+                <Skeleton className={cls.skeleton} width={600} height={32} />
+                <Skeleton className={cls.skeleton} width={'100%'} height={200} />
+                <Skeleton className={cls.skeleton} width={'100%'} height={200} />
             </>
         );
     } else if (error) {

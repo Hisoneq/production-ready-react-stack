@@ -5,7 +5,7 @@ import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import { getUserAuthData } from '../../../../entities/User';
 import { AppLink } from '../../../../shared/ui';
 import { AppLinkTheme } from '../../../../shared/ui/AppLink/AppLink';
-import { SideBarItemType } from '../../model/items';
+import type { SideBarItemType } from '../../model/types/items';
 import cls from './SideBarItem.module.scss';
 
 interface SideBarItemProps {

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Sketeton } from './Sketeton';
+import { Skeleton } from './Skeleton';
 
-const meta: Meta<typeof Sketeton> = {
-    title: 'shared/Sketeton',
-    component: Sketeton,
+const meta: Meta<typeof Skeleton> = {
+    title: 'shared/Skeleton',
+    component: Skeleton,
     tags: ['autodocs'],
     argTypes: {
         className: {
@@ -28,7 +28,7 @@ const meta: Meta<typeof Sketeton> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Sketeton>;
+type Story = StoryObj<typeof Skeleton>;
 
 export const Default: Story = {
     args: {},

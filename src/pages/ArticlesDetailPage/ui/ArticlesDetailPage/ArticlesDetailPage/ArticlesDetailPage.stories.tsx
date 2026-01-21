@@ -18,6 +18,10 @@ type Story = StoryObj<typeof ArticlesDetailPage>;
 
 const artice: Article = {
     id: '1',
+    user: {
+        id: '1',
+        username: 'hisone',
+    },
     title: 'JS news',
     subtitle: 'Subtitle for this js article',
     img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2048px-Unofficial_JavaScript_logo_2.svg.png',
