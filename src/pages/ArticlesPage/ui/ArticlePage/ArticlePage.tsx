@@ -10,12 +10,13 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { Page } from 'shared/ui/Page/Page';
 import {
     getArticlesPageHasMore,
+    getArticlesPageInited,
     getArticlesPageIsLoading,
     getArticlesPageNum,
     getArticlesPageView,
 } from '../../model/selectors/articlesList';
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 import { fetchNextArticlePage } from '../../model/services/fetchNextArticlePage/fetchNextArticlePage';
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import {
     articlePageActions,
     articlePageReducer,
@@ -37,14 +38,12 @@ export default function ArticlesPage({ className }: ArticlesPageProps) {
     const articles = useSelector(getArticles.selectAll);
     const page = useSelector(getArticlesPageNum);
     const hasMore = useSelector(getArticlesPageHasMore);
+    const _inited = useSelector(getArticlesPageInited);
 
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (__PROJECT__ !== 'storybook') {
-            dispatch(articlePageActions.initState());
-            dispatch(fetchArticlesList({ page: 1 }));
-        }
+        dispatch(initArticlesPage());
     }, []);
 
     const onLoadNextPage = useCallback(() => {
@@ -56,7 +55,7 @@ export default function ArticlesPage({ className }: ArticlesPageProps) {
     }, []);
 
     return (
-        <DynamicModuleLoader reducers={reducers} name="articlePage">
+        <DynamicModuleLoader reducers={reducers} removeAfterAmount={false} name="articlePage">
             <Page
                 onScrollEnd={onLoadNextPage}
                 className={classNames(cls.articlesPage, {}, [className])}

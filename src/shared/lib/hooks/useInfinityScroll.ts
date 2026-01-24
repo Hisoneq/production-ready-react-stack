@@ -12,28 +12,31 @@ export const useInfinityScroll = ({
     wrapperRef,
 }: UseInfinityScrollOptions) => {
     useEffect(() => {
-        let observer: IntersectionObserver;
+        let observer: IntersectionObserver | null = null;
 
-        if (callback) {
+        const wrapperElement = wrapperRef.current;
+        const triggerElement = triggerRef.current;
+
+        if (callback && triggerElement && wrapperElement) {
             const options = {
-                root: wrapperRef.current,
+                root: wrapperElement,
                 rootMargin: '0px',
-                scrollMargin: '0px',
                 threshold: 1.0,
             };
 
-            observer = new IntersectionObserver(([entire]) => {
-                if (entire.isIntersecting) {
+            observer = new IntersectionObserver(([entry]) => {
+                if (entry?.isIntersecting) {
                     callback();
                 }
             }, options);
 
-            observer.observe(triggerRef.current);
+            observer.observe(triggerElement);
         }
 
         return () => {
-            if (observer) {
-                observer.unobserve(triggerRef.current);
+            if (observer && triggerElement) {
+                observer.unobserve(triggerElement);
+                observer.disconnect();
             }
         };
     }, [triggerRef, wrapperRef, callback]);
