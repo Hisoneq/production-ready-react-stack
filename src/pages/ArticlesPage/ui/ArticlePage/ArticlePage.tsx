@@ -7,7 +7,7 @@ import {
     ReducersList,
 } from 'shared/lib/helpers/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { Page } from 'shared/ui/Page/Page';
+import { Page } from 'widgets/Page/Page';
 import {
     getArticlesPageHasMore,
     getArticlesPageInited,

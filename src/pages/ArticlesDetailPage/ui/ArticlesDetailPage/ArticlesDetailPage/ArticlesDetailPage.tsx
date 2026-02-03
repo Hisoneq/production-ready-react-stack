@@ -13,7 +13,7 @@ import {
 } from 'shared/lib/helpers/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { Button, ButtonTheme, Text } from 'shared/ui';
-import { Page } from 'shared/ui/Page/Page';
+import { Page } from 'widgets/Page/Page';
 import { getArticleCommentsIsLoading } from '../../../model/selectors/comments';
 import { addCommentForArticle } from '../../../model/services/addCommentForArticle/addCommentForArticle';
 import { fetchCommentsByArticleId } from '../../../model/services/fetchCommentsByArticleId.ts/fetchCommentsByArticleId';

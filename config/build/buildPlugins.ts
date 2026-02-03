@@ -27,6 +27,7 @@ export default function buildPlugins({ paths, isDev, apiUrl, project }: BuildOpt
     if (isDev) {
         plugins.push(new BundleAnalyzerPlugin({
             openAnalyzer: false,
+            excludeAssets: [/\.hot-update\.js$/, /\.hotUpdate\.js$/],
         }))
 
         plugins.push(new ReactRefreshWebpackPlugin())

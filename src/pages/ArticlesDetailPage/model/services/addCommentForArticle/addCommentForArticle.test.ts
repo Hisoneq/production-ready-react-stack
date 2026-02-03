@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Article } from 'entities/Article';
 import { getArticleDetailData } from 'entities/Article/model/selectors/articleDetail';
 import { getUserAuthData } from 'entities/User';
 import { TestAsyncThunk } from 'shared/config/tests/TestAsyncThunk/TestAsyncThunk';
@@ -17,18 +16,12 @@ jest.mock('entities/Article/model/selectors/articleDetail', () => ({
     getArticleDetailData: jest.fn(),
 }));
 
-jest.mock('../fetchCommentsByArticleId.ts/fetchCommentsByArticleId', () => ({
-    fetchCommentsByArticleId: jest.fn(() => ({
-        type: 'TEST_FETCH_COMMENTS',
-    })),
-}));
-
 const mockedGetUserAuthData = getUserAuthData as jest.MockedFunction<typeof getUserAuthData>;
 const mockedGetArticleDetailData = getArticleDetailData as jest.MockedFunction<
     typeof getArticleDetailData
 >;
 
-const mockedArticle = {
+const mockArticle = {
     id: '1',
     title: 'Article',
     subtitle: 'Subtitle',
@@ -37,6 +30,7 @@ const mockedArticle = {
     createdAt: '2024-01-01',
     type: [ArticleTypes.IT],
     blocks: [],
+    user: { id: '1', username: 'author' },
 };
 
 describe('addCommentForArticle', () => {
@@ -46,7 +40,6 @@ describe('addCommentForArticle', () => {
 
     test('успешный запрос', async () => {
         const mockUser = { id: '1', username: 'user' };
-        const mockArticle: Article = mockedArticle;
         const mockComment = { id: '1', text: 'comment' };
 
         mockedGetUserAuthData.mockReturnValue(mockUser);
@@ -54,17 +47,21 @@ describe('addCommentForArticle', () => {
         mockedAxios.post.mockResolvedValue({ data: mockComment });
 
         const thunk = new TestAsyncThunk(addCommentForArticle);
-        thunk.getState = jest.fn().mockReturnValue({});
 
         const result = await thunk.callThunk('test comment');
 
-        expect(mockedAxios.post).toHaveBeenCalled();
+        expect(mockedAxios.post).toHaveBeenCalledWith('/comments', {
+            articleId: '1',
+            userId: '1',
+            text: 'test comment',
+        });
         expect(result.meta.requestStatus).toBe('fulfilled');
+        expect(result.payload).toEqual(mockComment);
     });
 
     test('ошибка при отсутствии пользователя', async () => {
         mockedGetUserAuthData.mockReturnValue(undefined);
-        mockedGetArticleDetailData.mockReturnValue(mockedArticle);
+        mockedGetArticleDetailData.mockReturnValue(mockArticle);
 
         const thunk = new TestAsyncThunk(addCommentForArticle);
 
@@ -72,5 +69,52 @@ describe('addCommentForArticle', () => {
 
         expect(mockedAxios.post).not.toHaveBeenCalled();
         expect(result.meta.requestStatus).toBe('rejected');
+        expect(result.payload).toBe('no data or unauthorized');
+    });
+
+    test('ошибка при отсутствии статьи', async () => {
+        const mockUser = { id: '1', username: 'user' };
+
+        mockedGetUserAuthData.mockReturnValue(mockUser);
+        mockedGetArticleDetailData.mockReturnValue(undefined);
+
+        const thunk = new TestAsyncThunk(addCommentForArticle);
+
+        const result = await thunk.callThunk('test comment');
+
+        expect(mockedAxios.post).not.toHaveBeenCalled();
+        expect(result.meta.requestStatus).toBe('rejected');
+        expect(result.payload).toBe('no data or unauthorized');
+    });
+
+    test('ошибка при пустом тексте комментария', async () => {
+        const mockUser = { id: '1', username: 'user' };
+
+        mockedGetUserAuthData.mockReturnValue(mockUser);
+        mockedGetArticleDetailData.mockReturnValue(mockArticle);
+
+        const thunk = new TestAsyncThunk(addCommentForArticle);
+
+        const result = await thunk.callThunk('');
+
+        expect(mockedAxios.post).not.toHaveBeenCalled();
+        expect(result.meta.requestStatus).toBe('rejected');
+        expect(result.payload).toBe('no data or unauthorized');
+    });
+
+    test('ошибка при запросе на сервер', async () => {
+        const mockUser = { id: '1', username: 'user' };
+
+        mockedGetUserAuthData.mockReturnValue(mockUser);
+        mockedGetArticleDetailData.mockReturnValue(mockArticle);
+        mockedAxios.post.mockRejectedValue(new Error('Network Error'));
+
+        const thunk = new TestAsyncThunk(addCommentForArticle);
+
+        const result = await thunk.callThunk('test comment');
+
+        expect(mockedAxios.post).toHaveBeenCalled();
+        expect(result.meta.requestStatus).toBe('rejected');
+        expect(result.payload).toBe('Вы ввели неправильный логин или пароль');
     });
 });
